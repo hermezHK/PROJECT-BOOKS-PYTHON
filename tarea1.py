@@ -44,7 +44,7 @@ class Menu:
            return listar()
 
         elif opcion == 3:
-            return agregar(self), listar()
+            return agregar(),listar()
             
 
         elif opcion == 4:
@@ -76,7 +76,7 @@ class Menu:
 
 # dict data 
 lista_titulos = {"1" : "nada" , "2": "dinero", "3" : "Cartero"}
-datos = {'1' : {
+datos = {'ID1' : {
                         'Título' : 'Cartero',
                         'Autor'  : 'Charles Bukowski',
                         'Género' : 'Drama',
@@ -85,7 +85,7 @@ datos = {'1' : {
 
                     },
 
-             '2' :  {   'Título' : 'Dinero',
+             'ID2' :  {   'Título' : 'Dinero',
                         'Autor'  : 'Martin Amis',
                         'Género' : 'Ficción',
                         'ISBN'   : '9788433920492',
@@ -93,7 +93,7 @@ datos = {'1' : {
 
                     },
 
-              '3' : {   'Título' : 'Nada',
+              'ID3' : {   'Título' : 'Nada',
                         'Autor'  : 'Carmen Laforet',
                         'Género' : 'Novela',
                         'ISBN'   : '9788423342792',
@@ -114,21 +114,27 @@ def leer():
 
 # opcion 2 resultados
 def listar():
+
+    for l in datos:
+        print("\n",l)
+        for d in datos[l]:
+            print('{}:{}'.format(d,datos[l][d]))
       
-     print("Libro 1 - ",datos['1'], "\n")
-     print("Libro 2 - ",datos['2'], "\n")
-     print("Libro 3 - ",datos['3'])
-     return
+    return
    
-def agregar(self):
+def agregar():
+    nuevo_id = input("Ingrese el ID: ")
     nuevo_titulo = input("Ingrese el nombre del libro: ").title()
     nuevo_genero = input("Ingrese el genero: ").title()
     nuevo_ISBN = input("Ingrese ISBN: ")
     nuevo_editorial = input("Ingrese la editorial: ").title()
     nuevo_autor = input("Ingrese el autor: ").title()
-    nuevo_id = input("Ingrese el ID: ")
-    self.agregar_libro.append({'título':nuevo_titulo,'género':nuevo_genero,'ISBN':nuevo_ISBN, 'editorial':nuevo_editorial, 'autor':nuevo_autor, 'ID':nuevo_id})
-    print("Libro Agregado",self.agregar_libro, '\n')
+    
+    a={nuevo_id:{'Título':nuevo_titulo,'Autor':nuevo_autor,'Género':nuevo_genero,'ISBN':nuevo_ISBN, 'Editorial':nuevo_editorial}}
+    datos.update(a)
+    
+    
+    
     return
 
 def borrar():
