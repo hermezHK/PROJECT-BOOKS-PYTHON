@@ -48,10 +48,10 @@ class Menu:
             
 
         elif opcion == 4:
-            return borrar()
+            return borrar(),listar()
 
         elif opcion == 5:
-            return 
+            return buscar()
 
         elif opcion == 6:
             return 
@@ -138,7 +138,19 @@ def agregar():
     return
 
 def borrar():
-    return 
+    eliminar = str(input("Ingrese el ID a eliminar: "))
+    datos.pop(eliminar)
+    return
+
+def buscar():
+    #titulo nuero
+    #i=0
+    #while i<3:
+    #    busqueda=str(input("Escribe lo que buscar por Titulo o ISBN: "))
+    #    for x in datos.items():
+    #        if x in datos[i]["Título"]:
+    #            break
+    pass    
 
 
 bliblioteca = Menu()
