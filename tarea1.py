@@ -1,4 +1,4 @@
-
+import csv
 #defino los atributos de libro
 class Libro:
     def __init__(self, id, titulo, genero, ISBN, editorial, autores):
@@ -51,19 +51,19 @@ class Menu:
             return borrar(),listar()
 
         elif opcion == 5:
-            return buscar()
+            return buscar1()
 
         elif opcion == 6:
-            return 
+            return ordenar()
 
         elif opcion == 7:
-            return 
+            return buscar2()
 
         elif opcion == 8:
-            return 
+            return buscar3()
 
         elif opcion == 9:
-            return 
+            return editar(),listar()
 
         elif opcion == 10:
             return 
@@ -75,9 +75,10 @@ class Menu:
         self.opciones()
 
 # dict data 
-lista_titulos = {"1" : "nada" , "2": "dinero", "3" : "Cartero"}
-datos = {'ID1' : {
-                        'Título' : 'Cartero',
+lista_titulo_autor={'Cartero':"1",'Dinero':"1",'Nada':"2"}
+lista_titulos = ["nada" ,"dinero", "Cartero"]
+datos = {'ID1' : {   
+                       'Título' : 'Cartero',
                         'Autor'  : 'Charles Bukowski',
                         'Género' : 'Drama',
                         'ISBN'   : '9788433920638',
@@ -99,7 +100,8 @@ datos = {'ID1' : {
                         'ISBN'   : '9788423342792',
                         'Editorial' : 'Austral'
 
-              }}   
+                 }}
+  
 
 
 
@@ -121,7 +123,8 @@ def listar():
             print('{}:{}'.format(d,datos[l][d]))
       
     return
-   
+
+# opcion 3 resultados   
 def agregar():
     nuevo_id = input("Ingrese el ID: ")
     nuevo_titulo = input("Ingrese el nombre del libro: ").title()
@@ -131,26 +134,80 @@ def agregar():
     nuevo_autor = input("Ingrese el autor: ").title()
     
     a={nuevo_id:{'Título':nuevo_titulo,'Autor':nuevo_autor,'Género':nuevo_genero,'ISBN':nuevo_ISBN, 'Editorial':nuevo_editorial}}
+    
+    lista_titulos.append(nuevo_titulo)
+        
     datos.update(a)
-    
-    
     
     return
 
+# opcion 4 resultados 
 def borrar():
     eliminar = str(input("Ingrese el ID a eliminar: "))
     datos.pop(eliminar)
     return
 
-def buscar():
-    #titulo nuero
-    #i=0
-    #while i<3:
-    #    busqueda=str(input("Escribe lo que buscar por Titulo o ISBN: "))
-    #    for x in datos.items():
-    #        if x in datos[i]["Título"]:
-    #            break
-    pass    
+# opcion 5 resultados 
+def buscar1():
+    buscar= str(input("Ingrese el titulo o ICEBERG: ").title())
+    
+    for nombre, dato in datos.items():
+        #if dato['Título']==buscar:
+        #    print(datos.get(nombre))
+        #elif dato['ISBN']==buscar:
+        #    print(datos.get(nombre))
+        if dato['Título']==buscar or dato['ISBN']==buscar:
+            print(datos.get(nombre))
+    
+    return
+# opcion 6 resultados 
+
+def ordenar():
+    
+    a=sorted(lista_titulos)
+    for x in a:
+        print(x)
+    
+    return
+# opcion 7 resultados 
+def buscar2():
+    buscar= str(input("Ingrese el Autor, Editorial ,Genero: ").title())
+    for nombre, dato in datos.items():
+        if dato['Autor']==buscar or dato['Género']==buscar:
+            print(datos.get(nombre))
+        elif dato['Editorial']==buscar:
+            print(datos.get(nombre))
+# opcion 8 resultados
+def buscar3():
+    
+    buscar= str(input("Numero de autores: "))
+    for  key,value in list(lista_titulo_autor.items()):
+        if value == buscar:
+            print("El libro",key,"Tiene",value,"autor(es)")
+        
+    
+    return
+# opcion 9 resultados
+
+def editar():
+    id_a_cambiar = input("Ingrese el ID del libro que desea cambiar: ").upper()
+    nuevo_titulo = input("Ingrese el nombre del libro: ").title()
+    nuevo_genero = input("Ingrese el genero: ").title()
+    nuevo_ISBN = input("Ingrese ISBN: ")
+    nuevo_editorial = input("Ingrese la editorial: ").title()
+    nuevo_autor = input("Ingrese el autor: ").title()
+    
+    a={id_a_cambiar:{'Título':nuevo_titulo,'Autor':nuevo_autor,'Género':nuevo_genero,'ISBN':nuevo_ISBN, 'Editorial':nuevo_editorial}}
+    
+    lista_titulos.append(nuevo_titulo)
+    print(lista_titulos)
+        
+    datos.update(a)
+# opcion 10 resultados
+
+def guardar():
+    pass
+        
 
 
 bliblioteca = Menu()
