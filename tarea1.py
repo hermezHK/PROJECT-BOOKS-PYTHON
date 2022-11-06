@@ -133,7 +133,23 @@ def agregar(self):
 
 def borrar():
     return 
+# opcion 6: Ordenar libros 
+def ordenar(self):
+    print("ordenar libros")
+    libro_sort=sorted(datos)
+    for i in libro_sort:
+        print (i)
+    
 
+# Opción 7: Buscar libro por autor o género
+def buscar_libro():
+    busqueda= str(input("Ingrese el Autor, Editorial  o Genero: ").title())
+    for nombre, dato in datos.items():
+        if dato['Autor']==busqueda or dato['Género']==busqueda:
+            print(datos.get(nombre))
+        elif dato['Editorial']==busqueda:
+            print(datos.get(nombre))
+    return
 
 bliblioteca = Menu()
 bliblioteca.opciones()
