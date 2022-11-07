@@ -54,10 +54,10 @@ class Menu:
             return 
 
         elif opcion == 6:
-            return 
+            return ordenar()
 
         elif opcion == 7:
-            return 
+            return buscar2()
 
         elif opcion == 8:
             return 
@@ -134,15 +134,15 @@ def agregar(self):
 def borrar():
     return 
 # opcion 6: Ordenar libros 
-def ordenar(self):
-    print("ordenar libros")
+def ordenar():
+    print("ordenar libros ")
     libro_sort=sorted(datos)
     for i in libro_sort:
         print (i)
     
 
 # Opción 7: Buscar libro por autor o género
-def buscar_libro():
+def buscar2():
     busqueda= str(input("Ingrese el Autor, Editorial  o Genero: ").title())
     for nombre, dato in datos.items():
         if dato['Autor']==busqueda or dato['Género']==busqueda:
