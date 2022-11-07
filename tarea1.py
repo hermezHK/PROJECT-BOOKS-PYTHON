@@ -126,10 +126,10 @@ def listar():
 
 # opcion 3 resultados   
 def agregar():
-    nuevo_id = input("Ingrese el ID: ")
+    nuevo_id = input("Ingrese el ID: ").upper()
     nuevo_titulo = input("Ingrese el nombre del libro: ").title()
     nuevo_genero = input("Ingrese el genero: ").title()
-    nuevo_ISBN = input("Ingrese ISBN: ")
+    nuevo_ISBN = input("Ingrese ISBN: ").upper()
     nuevo_editorial = input("Ingrese la editorial: ").title()
     nuevo_autor = input("Ingrese el autor: ").title()
     nuevo_nautor = input("Ingrese el numero de autor: ").title()
@@ -228,11 +228,11 @@ def volver():
         bliblioteca.opciones() 
 
     return    
-    
-
-    
-        
 
 
 bliblioteca = Menu()
 bliblioteca.opciones()
+    
+
+    
+        
