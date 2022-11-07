@@ -1,4 +1,3 @@
-import csv
 #defino los atributos de libro
 class Libro:
     def __init__(self, id, titulo, genero, ISBN, editorial, autores):
@@ -38,39 +37,40 @@ class Menu:
         opcion = int(input("Ingrese una opción del 1 al 11:  "))
 
         if opcion == 1:
-            return leer()
+            return leer(),continuar(),volver()
 
         elif opcion == 2:
-           return listar()
+           return listar(),continuar(),volver()
 
         elif opcion == 3:
-            return agregar(),listar()
+            return agregar(),continuar(),volver()
             
 
         elif opcion == 4:
-            return borrar(),listar()
+            return borrar(),continuar(),volver()
 
         elif opcion == 5:
-            return buscar1()
+            return buscar1(),listar(),continuar(),volver()
 
         elif opcion == 6:
-            return ordenar()
+            return ordenar(),continuar(),volver()
 
         elif opcion == 7:
-            return buscar2()
+            return buscar2(),continuar(),volver()
 
         elif opcion == 8:
-            return buscar3()
+            return buscar3(),continuar(),volver()
 
         elif opcion == 9:
-            return editar(),listar()
+            return editar(),listar(),continuar(),volver()
 
         elif opcion == 10:
-            return 
+            return guardar(),continuar(),volver()
 
         elif opcion == 11:
             print("Usted ha salido del menu")
             exit()
+        
 
         self.opciones()
 
@@ -132,10 +132,12 @@ def agregar():
     nuevo_ISBN = input("Ingrese ISBN: ")
     nuevo_editorial = input("Ingrese la editorial: ").title()
     nuevo_autor = input("Ingrese el autor: ").title()
+    nuevo_nautor = input("Ingrese el numero de autor: ").title()
     
     a={nuevo_id:{'Título':nuevo_titulo,'Autor':nuevo_autor,'Género':nuevo_genero,'ISBN':nuevo_ISBN, 'Editorial':nuevo_editorial}}
-    
+    b={nuevo_titulo:nuevo_nautor}
     lista_titulos.append(nuevo_titulo)
+    lista_titulo_autor.update(b)
         
     datos.update(a)
     
@@ -196,17 +198,39 @@ def editar():
     nuevo_ISBN = input("Ingrese ISBN: ")
     nuevo_editorial = input("Ingrese la editorial: ").title()
     nuevo_autor = input("Ingrese el autor: ").title()
-    
+    nuevo_nautores=input("Ingrese el autor: ")
     a={id_a_cambiar:{'Título':nuevo_titulo,'Autor':nuevo_autor,'Género':nuevo_genero,'ISBN':nuevo_ISBN, 'Editorial':nuevo_editorial}}
-    
+    b={nuevo_titulo:nuevo_nautores}
     lista_titulos.append(nuevo_titulo)
-    print(lista_titulos)
-        
+    lista_titulo_autor.update(b)
     datos.update(a)
 # opcion 10 resultados
 
 def guardar():
-    pass
+    with open('libreria.txt', 'w') as f:
+        f.write(str(datos))
+    print('se grabo')
+    return
+
+def continuar():
+    input()
+    return
+
+def volver():
+
+    volve=str(input('Escribe "exit" para salir o preciona cualquier tecla para volver al menu: ')).upper()
+    if volve == 'EXIT':
+        print("Se acabo")
+        exit()
+        
+    
+    else:
+        bliblioteca.opciones() 
+
+    return    
+    
+
+    
         
 
 
